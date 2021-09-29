@@ -5,7 +5,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Baseball, Nfl, Nba, Nhl ,Boxeo , Mma ,Nascar ,Nascar_drivers ,Race ,Golf, Golfer
+from api.models import db, Baseball, Nfl, Nba, Nhl ,Boxeo , Mma ,Nascar ,Nascar_drivers ,Golf, Golfer
 from api.utils import generate_sitemap, APIException
 import os
 from flask_migrate import Migrate
@@ -35,64 +35,7 @@ def sitemap():
     return generate_sitemap(api)
 
 
-# -----metodos post-------------------------------------
-# obtener usuario de base de datos y crea token
-@api.route("/login", methods=["POST"])
-def login():
-    mail = request.json.get("mail", None)
-    password = request.json.get("password", None)
-    print(mail)
-    print(password)
-    user = User.query.filter_by(mail=mail, password=password).first()
-    # valida si estan vacios los ingresos
-    if user is None:
-        return jsonify({"msg": "Bad mail or password"}), 401
-    # crear token login
-    access_token = create_access_token(identity=mail)
-    return jsonify({"token": access_token, "username": user.name})
-
-
-# crea usuario----------------------------------------
-@api.route("/user", methods=["POST"])
-def register_user():
-    nombre = request.json.get("nombre", None)
-
-    # valida si estan vacios los ingresos
-    if nombre is None:
-        return jsonify({"msg": "No nombre was provided"}), 400
-
-    # busca usuario en BBDD
-    user = User.query.filter_by(nombre=nombre).first()
-    # the user was not found on the database
-    if user:
-        return jsonify({"msg": "User already exists"}), 401
-    else:
-        # crea usuario nuevo
-        # crea registro nuevo en BBDD de
-        user = User(nombre=nombre)
-        db.session.add(user)
-        db.session.commit()
-        return (
-            jsonify(
-                {
-                    "msg": "User created successfully",
-                }
-            ),
-            200,
-        )
-
-
 # ------metodos  GET--------------------------------------------------------
-
-
-@api.route("/user", methods=["GET"])
-def users():
-    if request.method == "GET":
-        records = User.query.all()
-        return jsonify([User.serialize(record) for record in records])  # LLAMAR A TODOS
-    else:
-        return jsonify({"msg": "no autorizado"})
-
 
 # --------Baseball---------------------------------------------------------------
 
