@@ -1,0 +1,132 @@
+/* 
+    General Styles
+*/
+body{
+    color: #002538;
+    font-family: 'Roboto', sans-serif;
+}
+.greenPulseBG{
+    background-color: #117864
+}
+.bluePulxeBG{
+    background-color: #002538;
+    i{
+        font-size: 3rem 
+    }
+}
+.wsColorText{
+    color:#25d366!important
+}
+.llamadaColorText{
+    color:lightseagreen!important
+}
+.text3r{
+    font-size: 3rem;
+}
+.text4r{
+    font-size: 4rem;
+}
+.text1_5r{
+    font-size: 1.5rem;
+}
+.yellow{
+    color: gold;
+}
+.imgSingle,.imgHome,.imgMecanica{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-image: url("https://pics.freeicons.io/uploads/icons/png/18279578471579252553-512.png");
+    background-size: cover;
+    background-position: center;
+    margin: 2% auto;
+    border: 5px solid #fff;
+    box-shadow: 0 0 5px #000;
+}
+.imgHome{
+    background-image: url("https://image.freepik.com/foto-gratis/carpintero-trabajando_23-2147773407.jpg");
+}
+.imgMecanica{
+    background-image: url("https://image.freepik.com/foto-gratis/carpintero-trabajando_23-2147773407.jpg");
+}
+.bgImgSingle{
+    background-color: rgb(226, 223, 223);
+}
+
+/*----home page-----*/
+.imgPrincipal{
+    background-image: url("https://i.postimg.cc/RCT6r9Np/portrait-of-handsome-smiling-carpenter-with-wood-material-at-workshop.jpg");
+    width: 100%;
+    height: 90vh;
+    background-attachment: fixed;
+    background-size: cover;
+    text-shadow: 0 0 5px #000;
+}
+.countRounded{
+    margin: 0 auto;
+    border: 2px solid #002538;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    line-height: 2.3;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.greyMedium{
+    background-color: #f2f2f2;
+    font-size: 4rem;
+    min-height: 400px;
+    padding-top: 5%;
+}
+.greyLight{
+    background-color: #f9f9f9;
+    font-size: 2rem;
+    min-height: 400px;
+    padding-top: 5%;
+}
+/*---pulxeIndex ---*/
+.listFilter li{
+    float: left;
+    width: 16%;
+}
+/*---Star Rating ---*/
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: #127864;
+}
+.off {
+  color: #ccc;
+}
+.star{
+    font-size: 2rem;
+}
+/*----forms-----*/
+.input-group-text {
+    color: #117864;
+    background-color: rgba(17, 120, 100 , .1);
+    border: 1px solid rgba(17, 120, 100 , .3);
+    border-radius: .25rem 0 0 .25rem;
+}
+/*----Nuevo Footer-----*/
+.encabezado {
+    text-align: right;
+    font-weight: 900;
+}
+.card-img-top {
+    width: 100%;
+    max-height: 210px;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    min-height: 350px;
+}
