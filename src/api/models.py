@@ -372,10 +372,12 @@ class Golfer(db.Model):
             # do not serialize the password, its a security breach
         }
 
+
 class News(db.Model):
     __tablename__ = "news"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(150), nullable=False)
+    url_image = db.Column(db.String(150), nullable=False)
     short_description = db.Column(db.String(1000), nullable=False)
     news_post = db.Column(db.Text, nullable=False)
     date = db.Column(db.Date, nullable=False)

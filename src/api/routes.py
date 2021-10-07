@@ -30,15 +30,15 @@ limiter = Limiter(
 )
 
 
-@api.route("/")
+# Handle/serialize errors like a JSON object
+@api.errorhandler(APIException)
+def handle_invalid_usage(error):
+    return jsonify(error.to_dict()), error.status_code
+
+# generate sitemap with all your endpoints
+@api.route('/')
 def sitemap():
     return generate_sitemap(api)
-
-
-# ------metodos  GET--------------------------------------------------------
-
-# --------Baseball---------------------------------------------------------------
-
 
 @api.route("/baseball", methods=["GET"])
 #   @limiter.limit("12 per hour")
@@ -49,8 +49,9 @@ def baseball():
     else:
         return jsonify({"msg": "no autorizado"})
 
-
 # ---------------------------------------------------------------------------
+
+
 @api.route("/nfl", methods=["GET"])
 def nfl():
     if request.method == "GET":
@@ -80,6 +81,8 @@ def nhl():
         return jsonify({"msg": "no autorizado"})
 
 # ---------------------------------------------------------------------------
+
+
 @api.route("/boxeo", methods=["GET"])
 def boxeo():
     if request.method == "GET":
@@ -88,6 +91,8 @@ def boxeo():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
+
 @api.route("/mma", methods=["GET"])
 def mma():
     if request.method == "GET":
@@ -96,6 +101,8 @@ def mma():
     else:
         return jsonify({"msg": "no autorizado"})
 # ---------------------------------------------------------------------------
+
+
 @api.route("/nascar", methods=["GET"])
 def nascar():
     if request.method == "GET":
@@ -105,6 +112,8 @@ def nascar():
         return jsonify({"msg": "no autorizado"})
 
 # ---------------------------------------------------------------------------
+
+
 @api.route("/nascar_drivers", methods=["GET"])
 def nascar_drivers():
     if request.method == "GET":
@@ -113,16 +122,10 @@ def nascar_drivers():
     else:
         return jsonify({"msg": "no autorizado"})
 
- # ---------------------------------------------------------------------------
-@api.route("/race", methods=["GET"])
-def race():
-    if request.method == "GET":
-        records = Race.query.all()
-        return jsonify([Race.serialize(record) for record in records])
-    else:
-        return jsonify({"msg": "no autorizado"})
 
  # ---------------------------------------------------------------------------
+
+
 @api.route("/golf", methods=["GET"])
 def golf():
     if request.method == "GET":
@@ -132,10 +135,23 @@ def golf():
         return jsonify({"msg": "no autorizado"})
 
  # ---------------------------------------------------------------------------
+
+
 @api.route("/golfer", methods=["GET"])
 def golfer():
     if request.method == "GET":
         records = Golfer.query.all()
         return jsonify([Golfer.serialize(record) for record in records])
+    else:
+        return jsonify({"msg": "no autorizado"})
+
+ # ---------------------------------------------------------------------------
+
+
+@api.route("/news", methods=["GET"])
+def news():
+    if request.method == "GET":
+        records = News().query.all()
+        return jsonify([News.serialize(record) for record in records])
     else:
         return jsonify({"msg": "no autorizado"})
