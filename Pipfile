@@ -22,6 +22,7 @@ blueprint = "*"
 flask-restful = "*"
 ratelimit = "*"
 flask-limiter = "*"
+mysqlclient = "*"
 
 [requires]
 python_version = "3.9"
